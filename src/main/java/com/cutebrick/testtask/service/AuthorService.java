@@ -20,4 +20,24 @@ public class AuthorService {
         return authorRepository.getAuthorByFirstNameAndLastName(firstName, lastName);
     }
 
+    public Author createAuthor(Author author) {
+        return authorRepository.save(author);
+    }
+
+    public Author getAuthorById(String id) {
+        return authorRepository.getOne(Integer.parseInt(id));
+    }
+
+    public void deleteAuthor(String id){
+        authorRepository.deleteAuthorById(Integer.parseInt(id));
+    }
+
+    public Author updateAuthor(String id, Author author) {
+        int intId = Integer.parseInt(id);
+        if (intId==author.getId()) {
+            return authorRepository.save(author);
+        } else {
+            throw new IllegalArgumentException("Id`s are different.");
+        }
+    }
 }
