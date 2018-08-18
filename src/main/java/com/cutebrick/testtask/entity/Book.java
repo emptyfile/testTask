@@ -1,16 +1,14 @@
 package com.cutebrick.testtask.entity;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
 @Data
-@EqualsAndHashCode
-@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,5 +21,5 @@ public class Book {
     @Column
     private String genre;
     @Column
-    private LocalDate releaseYear;
+    private Integer releaseYear;
 }
