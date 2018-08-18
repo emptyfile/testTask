@@ -1,20 +1,27 @@
 package com.cutebrick.testtask.service;
 
+import com.cutebrick.testtask.dto.AuthorDto;
+import com.cutebrick.testtask.dto.BookDto;
 import com.cutebrick.testtask.entity.Author;
 import com.cutebrick.testtask.entity.Book;
 import com.cutebrick.testtask.repository.BookRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class BookService {
     @Autowired
     private BookRepository bookRepository;
 
-    public List<Book> getAllBooks() {
-        return bookRepository.findAll();
+    ModelMapper mm = new ModelMapper();
+
+    public List<BookDto> getAllBooks() {
+        List<Book> all = bookRepository.findAll();
+        return all.stream().map(a->mm.map(a, BookDto.class)).collect(Collectors.toList());
     }
 
     public List<Book> getBooksByAuthor(Author author) {

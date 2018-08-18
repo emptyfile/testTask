@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {Observable} from '@reactivex/rxjs/es6/Observable.js'
+import {Observable} from 'rxjs/index'
 
 @Injectable()
 export class AuthorService {

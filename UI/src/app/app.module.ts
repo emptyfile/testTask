@@ -4,11 +4,13 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AuthorListComponent } from './author-list/author-list.component';
 import {HttpClientModule} from "@angular/common/http";
+import { BookListComponent } from './book-list/book-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AuthorListComponent
+    AuthorListComponent,
+    BookListComponent
   ],
   imports: [
     BrowserModule,

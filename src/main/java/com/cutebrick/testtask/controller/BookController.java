@@ -1,5 +1,6 @@
 package com.cutebrick.testtask.controller;
 
+import com.cutebrick.testtask.dto.BookDto;
 import com.cutebrick.testtask.entity.Book;
 import com.cutebrick.testtask.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/books")
 public class BookController {
@@ -15,7 +17,7 @@ public class BookController {
     private BookService bookService;
 
     @GetMapping
-    public List<Book> getAllBooks() {
+    public List<BookDto> getAllBooks() {
         return bookService.getAllBooks();
     }
 
