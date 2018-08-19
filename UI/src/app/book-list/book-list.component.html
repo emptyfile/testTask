@@ -1,0 +1,14 @@
+<p>
+  book-list works!
+</p>
+<h2>Book List</h2>
+
+<table border="1">
+  <tr *ngFor="let b of books">
+    <td>{{b.bookName}}</td>
+    <td>{{b.genre}}</td>
+    <td>{{b.releaseYear}}</td>
+    <td>{{b.author.lastName}}</td>
+    <td>{{b.author.firstName}}</td>
+  </tr>
+</table>
