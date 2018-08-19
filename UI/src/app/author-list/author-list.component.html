@@ -1,12 +1,19 @@
-<p>
-  author-list works!
-</p>
-
 <h2>Author List</h2>
-<table border="1">
-  <tr *ngFor="let b of authors">
-    <td>{{b.lastName}}</td>
-    <td>{{b.firstName}}</td>
-    <td>{{b.id}}</td>
+<table border="1" class="table">
+  <thead class="thead-dark">
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Name</th>
+    <th scope="col">Books</th>
+  </tr>
+  </thead>
+  <tr *ngFor="let a of authors">
+    <td>{{a.id}}</td>
+    <td>{{a.lastName}} {{a.firstName}}</td>
+    <td>
+      <div *ngFor="let b of a.books">
+        <a routerLink="/book-list">{{b.bookName}}</a>
+      </div>
+    </td>
   </tr>
 </table>

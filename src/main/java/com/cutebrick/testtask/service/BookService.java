@@ -22,6 +22,7 @@ public class BookService {
     public List<BookDto> getAllBooks() {
         List<Book> all = bookRepository.findAll();
         return all.stream().map(a->mm.map(a, BookDto.class)).collect(Collectors.toList());
+
     }
 
     public List<Book> getBooksByAuthor(Author author) {

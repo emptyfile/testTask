@@ -5,10 +5,8 @@ import lombok.ToString;
 
 @ToString
 @Data
-public class BookDto {
-    private Integer id;
-    private String bookName;
-    private AuthorDto author;
+public class BookDto extends BaseBookDto{
+    private BaseAuthorDto author;
     private String genre;
     private Integer releaseYear;
 }

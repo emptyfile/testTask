@@ -1,8 +1,11 @@
 package com.cutebrick.testtask.service;
 
 import com.cutebrick.testtask.dto.AuthorDto;
+import com.cutebrick.testtask.dto.BaseBookDto;
 import com.cutebrick.testtask.entity.Author;
+import com.cutebrick.testtask.entity.Book;
 import com.cutebrick.testtask.repository.AuthorRepository;
+import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +23,21 @@ public class AuthorService {
 
     ModelMapper mm = new ModelMapper();
 
+    Converter<List<Book>, List<BaseBookDto>> bookStringConverter = (ctx) -> ctx.getSource()
+            .stream()
+            .map(a->new BaseBookDto(a.getId(),a.getBookName()))
+            .collect(Collectors.toList());
+
+    @PostConstruct
+    public void init() {
+        mm.typeMap(Author.class, AuthorDto.class)
+                .addMappings(mapper -> mapper.using(bookStringConverter)
+                        .map(Author::getBooks, AuthorDto::setBooks));
+    }
 
     public List<AuthorDto> getAllAuthors() {
         List<Author> all = authorRepository.findAll();
-        List<AuthorDto> authorDtos = new ArrayList<AuthorDto>();
-        mm.map(all, authorDtos);
-        return all.stream().map(a->mm.map(a, AuthorDto.class)).collect(Collectors.toList());
+        return all.stream().map(a -> mm.map(a, AuthorDto.class)).collect(Collectors.toList());
     }
 
     public List<Author> getAuthorByName(String firstName, String lastName) {
@@ -40,13 +52,13 @@ public class AuthorService {
         return authorRepository.getOne(Integer.parseInt(id));
     }
 
-    public void deleteAuthor(String id){
+    public void deleteAuthor(String id) {
         authorRepository.deleteAuthorById(Integer.parseInt(id));
     }
 
     public Author updateAuthor(String id, Author author) {
         int intId = Integer.parseInt(id);
-        if (intId==author.getId()) {
+        if (intId == author.getId()) {
             return authorRepository.save(author);
         } else {
             throw new IllegalArgumentException("Id`s are different.");

@@ -1,14 +1,21 @@
-<p>
-  book-list works!
-</p>
 <h2>Book List</h2>
 
-<table border="1">
+<table border="1" class="table">
+  <thead class="thead-dark">
+  <tr>
+    <th scope="col">Book Name</th>
+    <th scope="col">Genre</th>
+    <th scope="col">Release Year</th>
+    <th scope="col">Author</th>
+  </tr>
+  </thead>
   <tr *ngFor="let b of books">
     <td>{{b.bookName}}</td>
     <td>{{b.genre}}</td>
     <td>{{b.releaseYear}}</td>
-    <td>{{b.author.lastName}}</td>
-    <td>{{b.author.firstName}}</td>
+    <td>
+      <a routerLink="/author-list" class="books">
+        {{b.author.lastName}} {{b.author.firstName}}
+      </a></td>
   </tr>
 </table>

@@ -7,8 +7,6 @@ import java.util.List;
 
 @ToString
 @Data
-public class AuthorDto {
-    private Integer id;
-    private String firstName;
-    private String lastName;
+public class AuthorDto extends BaseAuthorDto{
+    private List<BaseBookDto> books;
 }
