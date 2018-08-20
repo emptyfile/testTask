@@ -15,9 +15,14 @@ export class BookListComponent implements OnInit {
     this.bookService.getAll().subscribe(
       data => {
         this.books = data;
+        console.log(data);
       },
       error => console.log(error)
     )
+  }
+
+  filterBooks() {
+
   }
 
 }

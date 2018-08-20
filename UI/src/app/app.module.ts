@@ -8,7 +8,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { BookListComponent } from './book-list/book-list.component';
 
 const appRoutes: Routes = [
-  { path: 'author-list', component: AuthorListComponent },
+  { path: 'authors-list', component: AuthorListComponent },
   { path: 'book-list',      component: BookListComponent }
 ];
 

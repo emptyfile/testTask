@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/authors")
@@ -16,10 +17,15 @@ public class AuthorController {
     private AuthorService authorService;
 
     @GetMapping
-    public List<AuthorDto> getAllAuthors() {
-        System.out.println(authorService.getAllAuthors());
-        return authorService.getAllAuthors();
-
+    public List<AuthorDto> getAllAuthors(@RequestParam(name = "book_id",required = false) Integer bookId) {
+        System.out.println(bookId);
+        if (bookId == null) {
+            System.out.println(authorService.getAllAuthors());
+            return authorService.getAllAuthors();
+        } else {
+            System.out.println(authorService.getAllAuthorsByBookId(bookId));
+            return authorService.getAllAuthorsByBookId(bookId);
+        }
     }
 
     @PostMapping
@@ -41,4 +47,6 @@ public class AuthorController {
     public Author updateAuthor(@PathVariable("id") String id, @RequestBody Author author) {
         return authorService.updateAuthor(id, author);
     }
+
+
 }

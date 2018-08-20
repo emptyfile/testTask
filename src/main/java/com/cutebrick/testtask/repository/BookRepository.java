@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public interface BookRepository extends JpaRepository<Book, Integer> {
-    List<Book> getAllPozhalustaByAuthor(Author author);
+    //List<Book> getAllPozhalustaByAuthor(Author author);
     List<Book> getBooksByBookName(String name);
     void deleteBookById(Integer id);
 }

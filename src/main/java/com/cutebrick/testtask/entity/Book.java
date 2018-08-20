@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Data
@@ -15,9 +16,8 @@ public class Book {
     private Integer id;
     @Column
     private String bookName;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "author_id")
-    private Author author;
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "books")
+    private List<Author> authors;
     @Column
     private String genre;
     @Column

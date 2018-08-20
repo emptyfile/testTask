@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthorService} from "../shared";
+import {ActivatedRoute} from "@angular/router"
 
 @Component({
   selector: 'app-author-list',
@@ -10,16 +11,32 @@ import {AuthorService} from "../shared";
 export class AuthorListComponent implements OnInit {
   authors: Array<any>;
 
-  constructor(private authorService: AuthorService) { }
+  constructor(private authorService: AuthorService, private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
-    this.authorService.getAll().subscribe(
-      data => {
-        this.authors = data;
-        console.log(data)
-      },
-      error => console.log(error)
-    )
+
+    this.route.queryParams.subscribe(params => {
+      console.log(params);
+      let book_id = params["book_id"];
+      if (book_id == undefined) {
+        this.authorService.getAll().subscribe(
+          data => {
+            this.authors = data;
+            console.log(data)
+          },
+          error => console.log(error)
+        )
+      } else {
+        this.authorService.getById(book_id).subscribe(
+          data => {
+            this.authors = data.body;
+            console.log(data)
+          },
+          error => console.log(error)
+        )
+      }
+    })
   }
 
 }

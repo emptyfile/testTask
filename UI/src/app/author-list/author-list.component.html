@@ -11,8 +11,8 @@
     <td>{{a.id}}</td>
     <td>{{a.lastName}} {{a.firstName}}</td>
     <td>
-      <div *ngFor="let b of a.books">
-        <a routerLink="/book-list">{{b.bookName}}</a>
+      <div >
+        <a routerLink="/book-list">{{a.books[0].bookName}} <span *ngIf="a.books.length>1;">...</span></a>
       </div>
     </td>
   </tr>

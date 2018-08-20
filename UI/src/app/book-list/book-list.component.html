@@ -6,7 +6,7 @@
     <th scope="col">Book Name</th>
     <th scope="col">Genre</th>
     <th scope="col">Release Year</th>
-    <th scope="col">Author</th>
+    <th scope="col">Authors</th>
   </tr>
   </thead>
   <tr *ngFor="let b of books">
@@ -14,8 +14,9 @@
     <td>{{b.genre}}</td>
     <td>{{b.releaseYear}}</td>
     <td>
-      <a routerLink="/author-list" class="books">
-        {{b.author.lastName}} {{b.author.firstName}}
-      </a></td>
+      <div >
+        <a routerLink="/authors-list" [queryParams]="{book_id:b.id}">{{b.authors[0].firstName}} {{b.authors[0].lastName}} <span *ngIf="b.authors.length>1;">...</span></a>
+      </div>
+    </td>
   </tr>
 </table>

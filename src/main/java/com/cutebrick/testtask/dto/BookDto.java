@@ -3,10 +3,12 @@ package com.cutebrick.testtask.dto;
 import lombok.Data;
 import lombok.ToString;
 
+import java.util.List;
+
 @ToString
 @Data
 public class BookDto extends BaseBookDto{
-    private BaseAuthorDto author;
+    private List<BaseAuthorDto> authors;
     private String genre;
     private Integer releaseYear;
 }

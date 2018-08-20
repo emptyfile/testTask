@@ -5,6 +5,7 @@ import com.cutebrick.testtask.dto.BaseBookDto;
 import com.cutebrick.testtask.entity.Author;
 import com.cutebrick.testtask.entity.Book;
 import com.cutebrick.testtask.repository.AuthorRepository;
+import com.cutebrick.testtask.repository.BookRepository;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
@@ -20,6 +21,9 @@ import java.util.stream.Collectors;
 public class AuthorService {
     @Autowired
     private AuthorRepository authorRepository;
+
+    @Autowired
+    private BookRepository bookRepository;
 
     ModelMapper mm = new ModelMapper();
 
@@ -63,5 +67,10 @@ public class AuthorService {
         } else {
             throw new IllegalArgumentException("Id`s are different.");
         }
+    }
+
+    public List<AuthorDto> getAllAuthorsByBookId(Integer bookId) {
+        List<Author> all = bookRepository.getOne(bookId).getAuthors();
+        return all.stream().map(a -> mm.map(a, AuthorDto.class)).collect(Collectors.toList());
     }
 }
