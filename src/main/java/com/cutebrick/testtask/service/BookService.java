@@ -4,6 +4,7 @@ import com.cutebrick.testtask.dto.BaseAuthorDto;
 import com.cutebrick.testtask.dto.BookDto;
 import com.cutebrick.testtask.entity.Author;
 import com.cutebrick.testtask.entity.Book;
+import com.cutebrick.testtask.repository.AuthorRepository;
 import com.cutebrick.testtask.repository.BookRepository;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
@@ -19,11 +20,14 @@ public class BookService {
     @Autowired
     private BookRepository bookRepository;
 
+    @Autowired
+    private AuthorRepository authorRepository;
+
     ModelMapper mm = new ModelMapper();
 
     Converter<List<Author>, List<BaseAuthorDto>> bookStringConverter = (ctx) -> ctx.getSource()
             .stream()
-            .map(a->new BaseAuthorDto(a.getId(), a.getFirstName(), a.getLastName()))
+            .map(a -> new BaseAuthorDto(a.getId(), a.getFirstName(), a.getLastName()))
             .collect(Collectors.toList());
 
     @PostConstruct
@@ -35,7 +39,7 @@ public class BookService {
 
     public List<BookDto> getAllBooks() {
         List<Book> all = bookRepository.findAll();
-        return all.stream().map(a->mm.map(a, BookDto.class)).collect(Collectors.toList());
+        return all.stream().map(a -> mm.map(a, BookDto.class)).collect(Collectors.toList());
 
     }
 
@@ -67,5 +71,10 @@ public class BookService {
         } else {
             throw new IllegalArgumentException("Id`s are different.");
         }
+    }
+
+    public List<BookDto> getAllBooksByAuthorId(Integer authorId) {
+        List<Book> books = authorRepository.getOne(authorId).getBooks();
+        return books.stream().map(b->mm.map(b, BookDto.class)).collect(Collectors.toList());
     }
 }

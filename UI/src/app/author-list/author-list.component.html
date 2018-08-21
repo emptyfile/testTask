@@ -9,10 +9,10 @@
   </thead>
   <tr *ngFor="let a of authors">
     <td>{{a.id}}</td>
-    <td>{{a.lastName}} {{a.firstName}}</td>
+    <td>{{a.firstName}} {{a.lastName}}</td>
     <td>
       <div >
-        <a routerLink="/book-list">{{a.books[0].bookName}} <span *ngIf="a.books.length>1;">...</span></a>
+        <a routerLink="/book-list" [queryParams]="{author_id:a.id}"> {{a.books[0].bookName}} <span *ngIf="a.books.length>1;">...</span></a>
       </div>
     </td>
   </tr>

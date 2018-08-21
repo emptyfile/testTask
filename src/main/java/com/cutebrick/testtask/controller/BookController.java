@@ -17,9 +17,16 @@ public class BookController {
     private BookService bookService;
 
     @GetMapping
-    public List<BookDto> getAllBooks() {
-        System.out.println(bookService.getAllBooks());
-        return bookService.getAllBooks();
+    public List<BookDto> getAllBooks(@RequestParam(name = "author_id",required = false) Integer authorId) {
+        System.out.println(authorId);
+        if (authorId==null) {
+            System.out.println(bookService.getAllBooks());
+            return bookService.getAllBooks();
+        }else {
+            System.out.println(bookService.getAllBooksByAuthorId(authorId));
+            return bookService.getAllBooksByAuthorId(authorId);
+        }
+
     }
 
     @PostMapping

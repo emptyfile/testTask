@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs/index";
 
 @Injectable({
@@ -14,4 +14,11 @@ export class BookService {
   }
 
 
+  getById(id: number): Observable<any> {
+    return this.http.get('http://localhost:8080/books', {
+      params: new HttpParams().set("author_id", ""+id),
+      observe: 'response'
+    })
+
+  }
 }
