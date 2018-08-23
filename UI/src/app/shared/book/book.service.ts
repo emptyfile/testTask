@@ -21,4 +21,17 @@ export class BookService {
     })
 
   }
+
+  delete(bookId: any): Observable<any> {
+    let url = "http://localhost:8080/books/" + bookId;
+    console.log(url);
+    return this.http.delete(url);
+
+  }
+
+  save(book: any):Observable<any> {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post('http://localhost:8080/books', JSON.stringify(book),{headers: {'Content-Type':'application/json'}});
+  }
 }

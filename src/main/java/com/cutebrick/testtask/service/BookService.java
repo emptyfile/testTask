@@ -10,6 +10,7 @@ import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -60,6 +61,7 @@ public class BookService {
         return bookRepository.getOne(Integer.parseInt(id));
     }
 
+    @Transactional
     public void deleteBook(String id) {
         bookRepository.deleteBookById(Integer.parseInt(id));
     }

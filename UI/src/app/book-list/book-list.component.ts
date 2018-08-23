@@ -40,8 +40,10 @@ export class BookListComponent implements OnInit {
 
   }
 
-  filterBooks() {
-
+  public delete(event, bookId) {
+    this.bookService.delete(bookId).subscribe(()=> location.reload());
   }
+
+
 
 }

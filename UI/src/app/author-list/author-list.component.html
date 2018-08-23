@@ -11,8 +11,8 @@
     <td>{{a.id}}</td>
     <td>{{a.firstName}} {{a.lastName}}</td>
     <td>
-      <div >
-        <a routerLink="/book-list" [queryParams]="{author_id:a.id}"> {{a.books[0].bookName}} <span *ngIf="a.books.length>1;">...</span></a>
+      <div>
+        <a routerLink="/book-list" [queryParams]="{author_id:a.id}" *ngIf="a.books.length>0"> {{a.books[0].bookName}} <span *ngIf="a.books.length>1;">...</span></a>
       </div>
     </td>
   </tr>

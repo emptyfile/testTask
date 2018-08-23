@@ -4,6 +4,7 @@ import com.cutebrick.testtask.dto.BookDto;
 import com.cutebrick.testtask.entity.Book;
 import com.cutebrick.testtask.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,10 +29,10 @@ public class BookController {
         }
 
     }
-
-    @PostMapping
-    public Book createBook(@RequestBody Book book) {
-        return bookService.createBook(book);
+    @CrossOrigin(origins = "*")
+    @PostMapping(consumes = "application/json"  )
+    public void createBook(@RequestBody Book book) {
+        bookService.createBook(book);
     }
 
     @GetMapping("/{id}")
@@ -41,6 +42,7 @@ public class BookController {
 
     @DeleteMapping("/{id}")
     public void deleteBook(@PathVariable("id") String id) {
+        System.out.println("1 "+id);
         bookService.deleteBook(id);
     }
 

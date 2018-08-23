@@ -7,6 +7,7 @@
     <th scope="col">Genre</th>
     <th scope="col">Release Year</th>
     <th scope="col">Authors</th>
+    <th scope="col">Actions</th>
   </tr>
   </thead>
   <tr *ngFor="let b of books">
@@ -17,6 +18,10 @@
       <div >
         <a routerLink="/authors-list" [queryParams]="{book_id:b.id}">{{b.authors[0].firstName}} {{b.authors[0].lastName}} <span *ngIf="b.authors.length>1;">...</span></a>
       </div>
+    </td>
+    <td>
+      <input type="button" value="delete" (click)="delete($event, b.id)"/>
+      <!--<input type="button" value="update" (click)="update($event, b.id)"/>-->
     </td>
   </tr>
 </table>
