@@ -5,6 +5,7 @@
     <th scope="col">#</th>
     <th scope="col">Name</th>
     <th scope="col">Books</th>
+    <th scope="col">Actions</th>
   </tr>
   </thead>
   <tr *ngFor="let a of authors">
@@ -14,6 +15,10 @@
       <div>
         <a routerLink="/book-list" [queryParams]="{author_id:a.id}" *ngIf="a.books.length>0"> {{a.books[0].bookName}} <span *ngIf="a.books.length>1;">...</span></a>
       </div>
+    </td>
+    <td>
+      <input type="button" value="delete" (click)="delete($event, a.id)"/>
+      <!--<input type="button" value="update" (click)="update($event, b.id)"/>-->
     </td>
   </tr>
 </table>

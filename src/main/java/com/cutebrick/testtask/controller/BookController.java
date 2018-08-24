@@ -27,10 +27,10 @@ public class BookController {
             System.out.println(bookService.getAllBooksByAuthorId(authorId));
             return bookService.getAllBooksByAuthorId(authorId);
         }
-
     }
+
     @CrossOrigin(origins = "*")
-    @PostMapping(consumes = "application/json"  )
+    @PostMapping(consumes = "application/json")
     public void createBook(@RequestBody Book book) {
         bookService.createBook(book);
     }

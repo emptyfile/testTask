@@ -39,4 +39,8 @@ export class AuthorListComponent implements OnInit {
     })
   }
 
+  public delete(event, authorId) {
+    this.authorService.delete(authorId).subscribe(()=> location.reload());
+  }
+
 }

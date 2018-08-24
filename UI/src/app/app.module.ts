@@ -7,11 +7,13 @@ import { AuthorListComponent } from './author-list/author-list.component';
 import {HttpClientModule} from "@angular/common/http";
 import { BookListComponent } from './book-list/book-list.component';
 import { BookPageComponent } from './book-page/book-page.component';
+import { AuthorPageComponent } from './author-page/author-page.component';
 
 const appRoutes: Routes = [
   { path: 'authors-list', component: AuthorListComponent },
   { path: 'book-list',      component: BookListComponent },
-  { path: 'book-page',      component: BookPageComponent }
+  { path: 'book-page',      component: BookPageComponent },
+  { path: 'author-page',      component: AuthorPageComponent }
 ];
 
 @NgModule({
@@ -19,7 +21,8 @@ const appRoutes: Routes = [
     AppComponent,
     AuthorListComponent,
     BookListComponent,
-    BookPageComponent
+    BookPageComponent,
+    AuthorPageComponent
   ],
   imports: [
     BrowserModule,

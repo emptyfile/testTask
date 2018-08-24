@@ -28,9 +28,9 @@ public class AuthorController {
         }
     }
 
-    @PostMapping
-    public Author createAuthor(@RequestBody Author author) {
-        return authorService.createAuthor(author);
+    @PostMapping(consumes = "application/json")
+    public void createAuthor(@RequestBody Author author) {
+        authorService.createAuthor(author);
     }
 
     @GetMapping("/{id}")
@@ -40,6 +40,7 @@ public class AuthorController {
 
     @DeleteMapping("/{id}")
     public void deleteAuthor(@PathVariable("id") String id) {
+        System.out.println("1 "+id);
         authorService.deleteAuthor(id);
     }
 

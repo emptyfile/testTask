@@ -11,6 +11,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
@@ -56,6 +57,7 @@ public class AuthorService {
         return authorRepository.getOne(Integer.parseInt(id));
     }
 
+    @Transactional
     public void deleteAuthor(String id) {
         authorRepository.deleteAuthorById(Integer.parseInt(id));
     }

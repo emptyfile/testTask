@@ -1,0 +1,7 @@
+<label>
+  <input type="text" #firstName (blur)="this.author.firstName = firstName.value">
+</label>
+<label>
+  <input type="text" #lastName (blur)="this.author.lastName = lastName.value">
+</label>
+<input type="button" (click)="save()" value="Save">
