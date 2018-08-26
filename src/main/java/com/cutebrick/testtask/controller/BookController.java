@@ -31,12 +31,12 @@ public class BookController {
 
     @CrossOrigin(origins = "*")
     @PostMapping(consumes = "application/json")
-    public void createBook(@RequestBody Book book) {
+    public void createBook(@RequestBody BookDto book) {
         bookService.createBook(book);
     }
 
     @GetMapping("/{id}")
-    public Book getBook(@PathVariable("id") String id) {
+    public BookDto getBook(@PathVariable("id") String id) {
         return bookService.getBookById(id);
     }
 
@@ -47,7 +47,8 @@ public class BookController {
     }
 
     @PutMapping("/{id}")
-    public Book updateBook(@PathVariable("id") String id, @RequestBody Book book) {
-        return bookService.updateBook(id, book);
+    public void updateBook(@PathVariable("id") String id, @RequestBody BookDto book) {
+
+        bookService.updateBook(id, book);
     }
 }

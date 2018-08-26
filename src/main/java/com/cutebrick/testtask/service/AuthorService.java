@@ -1,6 +1,7 @@
 package com.cutebrick.testtask.service;
 
 import com.cutebrick.testtask.dto.AuthorDto;
+import com.cutebrick.testtask.dto.BaseAuthorDto;
 import com.cutebrick.testtask.dto.BaseBookDto;
 import com.cutebrick.testtask.entity.Author;
 import com.cutebrick.testtask.entity.Book;
@@ -32,6 +33,7 @@ public class AuthorService {
             .stream()
             .map(a->new BaseBookDto(a.getId(),a.getBookName()))
             .collect(Collectors.toList());
+    private List<BaseAuthorDto> allBaseAuthorDtos;
 
     @PostConstruct
     public void init() {
@@ -74,5 +76,11 @@ public class AuthorService {
     public List<AuthorDto> getAllAuthorsByBookId(Integer bookId) {
         List<Author> all = bookRepository.getOne(bookId).getAuthors();
         return all.stream().map(a -> mm.map(a, AuthorDto.class)).collect(Collectors.toList());
+    }
+
+    public List<BaseAuthorDto> getAllBaseAuthorDtos() {
+        List<Author> all = authorRepository.findAll();
+        return all.stream().map(a->mm.map(a, BaseAuthorDto.class)).collect(Collectors.toList());
+
     }
 }

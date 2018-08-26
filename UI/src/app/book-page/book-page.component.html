@@ -1,13 +1,22 @@
-<label>
-  <input type="text" #bookName (blur)="this.book.bookName = bookName.value">
+<label>Book name<br>
+  <input type="text" #bookName [(ngModel)]="book.bookName">
 </label>
-<label>
-  <input type="text" #genre (blur)="this.book.genre = genre.value">
+<br>
+<label>Genre <br>
+  <input type="text" #genre [(ngModel)]="book.genre">
 </label>
-<label>
-  <input type="text" #releaseYear (blur)="this.book.releaseYear = releaseYear.value">
+<br>
+<label>Release Year<br>
+  <input type="text" #releaseYear [(ngModel)]="book.releaseYear">
 </label>
-<select name="Authors" id="authors" (change)=setAuthors($event.target.value)>
-  <option value="{{a.id}}" *ngFor="let a of authors">{{a.firstName}} {{a.lastName}}</option>
-</select>
+<br>Authors
+<div *ngFor="let n of numbers">
+  {{string(selectedAuthors[n])}}
+  <select name="Authors" id="authors" [compareWith]="compareAuthor" [(ngModel)]="selectedAuthors[n]" (ngModelChange)="log($event)">
+    <option [ngValue]="a" *ngFor="let a of authors"  [selected]="a.id==1" >{{a.firstName}} {{a.lastName}} {{a.id}}</option>
+  </select>
+</div>
+<br>
+<input type="button" value="Add" (click)="addAuthor()">
 <input type="button" (click)="save()" value="Save">
+

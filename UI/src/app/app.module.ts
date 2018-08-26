@@ -8,6 +8,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { BookListComponent } from './book-list/book-list.component';
 import { BookPageComponent } from './book-page/book-page.component';
 import { AuthorPageComponent } from './author-page/author-page.component';
+import {FormsModule} from "@angular/forms";
 
 const appRoutes: Routes = [
   { path: 'authors-list', component: AuthorListComponent },
@@ -29,7 +30,8 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(
       appRoutes
-    )
+    ),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

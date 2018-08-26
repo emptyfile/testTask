@@ -1,6 +1,7 @@
 package com.cutebrick.testtask.controller;
 
 import com.cutebrick.testtask.dto.AuthorDto;
+import com.cutebrick.testtask.dto.BaseAuthorDto;
 import com.cutebrick.testtask.entity.Author;
 import com.cutebrick.testtask.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,11 @@ public class AuthorController {
             System.out.println(authorService.getAllAuthorsByBookId(bookId));
             return authorService.getAllAuthorsByBookId(bookId);
         }
+    }
+
+    @GetMapping("/base")
+    public List<BaseAuthorDto> getAllBaseAuthorDtos() {
+        return authorService.getAllBaseAuthorDtos();
     }
 
     @PostMapping(consumes = "application/json")

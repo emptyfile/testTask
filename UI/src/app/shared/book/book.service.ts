@@ -14,7 +14,7 @@ export class BookService {
   }
 
 
-  getById(id: number): Observable<any> {
+  getByAuthorId(id: number): Observable<any> {
     return this.http.get('http://localhost:8080/books', {
       params: new HttpParams().set("author_id", ""+id),
       observe: 'response'
@@ -22,16 +22,24 @@ export class BookService {
 
   }
 
+  getById(id:number):Observable<any> {
+    let url = "http://localhost:8080/books/" + id;
+    console.log(url);
+    return this.http.get(url);
+  }
+
   delete(bookId: any): Observable<any> {
     let url = "http://localhost:8080/books/" + bookId;
     console.log(url);
     return this.http.delete(url);
+  }
 
+  update(book: any):Observable<any> {
+    let url = "http://localhost:8080/books/" + book.id;
+    return this.http.put(url, JSON.stringify(book),{headers: {'Content-Type':'application/json'}});
   }
 
   save(book: any):Observable<any> {
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
     return this.http.post('http://localhost:8080/books', JSON.stringify(book),{headers: {'Content-Type':'application/json'}});
   }
 }

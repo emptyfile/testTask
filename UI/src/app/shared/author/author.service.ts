@@ -30,4 +30,8 @@ export class AuthorService {
     headers.append('Content-Type', 'application/json');
     return this.http.post('http://localhost:8080/authors', JSON.stringify(author),{headers: {'Content-Type':'application/json'}});
   }
+
+  getAllBase():Observable<any> {
+    return this.http.get('http://localhost:8080/authors/base');
+  }
 }

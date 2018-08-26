@@ -1,7 +1,7 @@
 <label>
-  <input type="text" #firstName (blur)="this.author.firstName = firstName.value">
+  <input type="text" #firstName [(ngModel)]="author.firstName">
 </label>
 <label>
-  <input type="text" #lastName (blur)="this.author.lastName = lastName.value">
+  <input type="text" #lastName [(ngModel)]="author.lastName">
 </label>
 <input type="button" (click)="save()" value="Save">

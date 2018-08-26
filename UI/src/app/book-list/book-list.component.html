@@ -1,4 +1,5 @@
-<h2>Book List</h2>
+<span class="header float-left">Book List</span>
+<input type="button" class="float-right" routerLink="/book-page" value="Add">
 
 <table border="1" class="table">
   <thead class="thead-dark">
@@ -16,12 +17,12 @@
     <td>{{b.releaseYear}}</td>
     <td>
       <div >
-        <a routerLink="/authors-list" [queryParams]="{book_id:b.id}">{{b.authors[0].firstName}} {{b.authors[0].lastName}} <span *ngIf="b.authors.length>1;">...</span></a>
+        <a routerLink="/authors-list" *ngIf="b.authors.length>0" [queryParams]="{book_id:b.id}">{{b.authors[0].firstName}} {{b.authors[0].lastName}} <span *ngIf="b.authors.length>1;">...</span></a>
       </div>
     </td>
     <td>
       <input type="button" value="delete" (click)="delete($event, b.id)"/>
-      <!--<input type="button" value="update" (click)="update($event, b.id)"/>-->
+      <input type="button" value="update" routerLink="/book-page" [queryParams]="{book_id:b.id}"/>
     </td>
   </tr>
 </table>

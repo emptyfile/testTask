@@ -31,11 +31,22 @@ public class BookService {
             .map(a -> new BaseAuthorDto(a.getId(), a.getFirstName(), a.getLastName()))
             .collect(Collectors.toList());
 
+    Converter<List<BaseAuthorDto>, List<Author>> baseDtoToAuthor = (ctx) -> ctx.getSource()
+            .stream()
+            .map(a-> authorRepository.getOne(a.getId()))
+            .collect(Collectors.toList());
+
+
+
     @PostConstruct
     public void init() {
         mm.typeMap(Book.class, BookDto.class)
                 .addMappings(mapper -> mapper.using(bookStringConverter)
                         .map(Book::getAuthors, BookDto::setAuthors));
+
+        mm.typeMap(BookDto.class, Book.class)
+                .addMappings(mapper -> mapper.using(baseDtoToAuthor)
+                    .map(BookDto::getAuthors, Book::setAuthors));
     }
 
     public List<BookDto> getAllBooks() {
@@ -53,12 +64,14 @@ public class BookService {
         return bookRepository.getBooksByBookName(name);
     }
 
-    public Book createBook(Book book) {
+    public Book createBook(BookDto bookDto) {
+        Book book = mm.map(bookDto, Book.class);
+        book.getAuthors().forEach(author -> author.getBooks().add(book));
         return bookRepository.save(book);
     }
 
-    public Book getBookById(String id) {
-        return bookRepository.getOne(Integer.parseInt(id));
+    public BookDto getBookById(String id) {
+        return mm.map(bookRepository.getOne(Integer.parseInt(id)), BookDto.class);
     }
 
     @Transactional
@@ -66,10 +79,11 @@ public class BookService {
         bookRepository.deleteBookById(Integer.parseInt(id));
     }
 
-    public Book updateBook(String id, Book book) {
+    public void updateBook(String id, BookDto bookDto) {
         int intId = Integer.parseInt(id);
+        Book book = mm.map(bookDto, Book.class);
         if (intId == book.getId()) {
-            return bookRepository.save(book);
+             bookRepository.save(book);
         } else {
             throw new IllegalArgumentException("Id`s are different.");
         }
