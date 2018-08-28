@@ -19,7 +19,7 @@
     </td>
     <td>
       <input type="button" value="delete" (click)="delete($event, a.id)"/>
-      <!--<input type="button" value="update" (click)="update($event, b.id)"/>-->
+      <input type="button" value="update" routerLink="/author-page" [queryParams]="{author_id:a.id}"/>
     </td>
   </tr>
 </table>

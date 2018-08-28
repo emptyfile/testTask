@@ -12,4 +12,6 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     //List<Book> getAllPozhalustaByAuthor(Author author);
     List<Book> getBooksByBookName(String name);
     void deleteBookById(Integer id);
+
+    List<Book> getAllByIdIn(List<Integer> bookDtoIds);
 }

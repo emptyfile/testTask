@@ -11,9 +11,8 @@
 </label>
 <br>Authors
 <div *ngFor="let n of numbers">
-  {{string(selectedAuthors[n])}}
   <select name="Authors" id="authors" [compareWith]="compareAuthor" [(ngModel)]="selectedAuthors[n]" (ngModelChange)="log($event)">
-    <option [ngValue]="a" *ngFor="let a of authors"  [selected]="a.id==1" >{{a.firstName}} {{a.lastName}} {{a.id}}</option>
+    <option [ngValue]="a" *ngFor="let a of authors"  [selected]="a.id==1" >{{a.firstName}} {{a.lastName}}</option>
   </select>
 </div>
 <br>

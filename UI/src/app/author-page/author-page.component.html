@@ -1,7 +1,11 @@
-<label>
+<label>First Name
+  <br>
   <input type="text" #firstName [(ngModel)]="author.firstName">
 </label>
-<label>
+<br>
+<label>Last Name
+  <br>
   <input type="text" #lastName [(ngModel)]="author.lastName">
 </label>
+<br>
 <input type="button" (click)="save()" value="Save">

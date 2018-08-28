@@ -28,7 +28,7 @@ export class AuthorListComponent implements OnInit {
           error => console.log(error)
         )
       } else {
-        this.authorService.getById(book_id).subscribe(
+        this.authorService.getByBookId(book_id).subscribe(
           data => {
             this.authors = data.body;
             console.log(data)

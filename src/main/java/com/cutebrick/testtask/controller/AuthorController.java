@@ -34,6 +34,11 @@ public class AuthorController {
         return authorService.getAllBaseAuthorDtos();
     }
 
+    @GetMapping("/base/{id}")
+    public BaseAuthorDto getBaseAuthor(@PathVariable("id") String id) {
+        return authorService.getBaseAuthorById(id);
+    }
+
     @PostMapping(consumes = "application/json")
     public void createAuthor(@RequestBody Author author) {
         authorService.createAuthor(author);
@@ -51,8 +56,8 @@ public class AuthorController {
     }
 
     @PutMapping("/{id}")
-    public Author updateAuthor(@PathVariable("id") String id, @RequestBody Author author) {
-        return authorService.updateAuthor(id, author);
+    public void updateAuthor(@PathVariable("id") String id, @RequestBody AuthorDto authorDto) {
+        authorService.updateAuthor(id, authorDto);
     }
 
 

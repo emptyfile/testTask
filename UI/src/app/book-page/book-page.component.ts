@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthorService, BookService} from "../shared";
 import {forEach} from "@angular/router/src/utils/collection";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-book-page',
@@ -14,9 +14,8 @@ export class BookPageComponent implements OnInit {
   authors: Array<any>;
   selectedAuthors: Array<any>;
   numbers: Array<number>;
-  smartWatch: string;
 
-  constructor(private bookService: BookService, private authorService: AuthorService, private route: ActivatedRoute) {
+  constructor(private bookService: BookService, private authorService: AuthorService, private route: ActivatedRoute, private router: Router) {
     this.authors = [{"id": 0, "firstName": "", "lastName": ""}];
     this.book = {};
     this.selectedAuthors = [this.authors[0]];
@@ -33,7 +32,6 @@ export class BookPageComponent implements OnInit {
         }, error => console.log(error)
       );
       if (book_id != undefined) {
-
         this.bookService.getById(book_id).subscribe(
           data => {
             this.book = data;
@@ -53,13 +51,14 @@ export class BookPageComponent implements OnInit {
     this.book.authors = this.selectedAuthors.slice().filter(a => a.id != 0).filter((elem, pos, arr) => {
       return arr.indexOf(elem) == pos;
     });
+    console.log(JSON.stringify(this.book))
     if (this.book.id == undefined) {
       this.bookService.save(this.book).subscribe(
-        () => console.log("saved " + this.book)
+        () => this.router.navigate(["/book-list"])
       )
     } else {
       this.bookService.update(this.book).subscribe(
-        () => console.log("updated" + this.book)
+        () => this.router.navigate(["/book-list"])
       )
     }
 
@@ -80,7 +79,7 @@ export class BookPageComponent implements OnInit {
 
   public addAuthor() {
     this.numbers.push(this.numbers.length);
-    this.selectedAuthors.push(null);
+    this.selectedAuthors.push({"id": 0, "firstName": "", "lastName": ""});
     console.log(JSON.stringify(this.selectedAuthors));
   }
 

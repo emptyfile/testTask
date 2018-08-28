@@ -12,7 +12,7 @@ export class AuthorService {
     return this.http.get('http://localhost:8080/authors');
   }
 
-  getById(id: number): Observable<any> {
+  getByBookId(id: number): Observable<any> {
     return this.http.get("http://localhost:8080/authors", {
       params: new HttpParams().set('book_id', "" + id),
       observe: 'response'
@@ -33,5 +33,16 @@ export class AuthorService {
 
   getAllBase():Observable<any> {
     return this.http.get('http://localhost:8080/authors/base');
+  }
+
+  getBaseById(authorId:number):Observable<any> {
+    let url = "http://localhost:8080/authors/base/" + authorId;
+    console.log(url);
+    return this.http.get(url);
+  }
+
+  update(author: any) :Observable<any> {
+    let url = "http://localhost:8080/authors/" + author.id;
+    return this.http.put(url, JSON.stringify(author),{headers: {'Content-Type':'application/json'}});
   }
 }

@@ -81,8 +81,10 @@ public class BookService {
 
     public void updateBook(String id, BookDto bookDto) {
         int intId = Integer.parseInt(id);
-        Book book = mm.map(bookDto, Book.class);
+        //Book book = mm.map(bookDto, Book.class);
+        Book book = bookRepository.getOne(bookDto.getId()).updateFromDto(bookDto, authorRepository);
         if (intId == book.getId()) {
+
              bookRepository.save(book);
         } else {
             throw new IllegalArgumentException("Id`s are different.");

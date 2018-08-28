@@ -59,15 +59,22 @@ public class AuthorService {
         return authorRepository.getOne(Integer.parseInt(id));
     }
 
+    public BaseAuthorDto getBaseAuthorById(String id) {
+        Author author = authorRepository.getOne(Integer.parseInt(id));
+        return mm.map(author, BaseAuthorDto.class);
+    }
+
     @Transactional
     public void deleteAuthor(String id) {
         authorRepository.deleteAuthorById(Integer.parseInt(id));
     }
 
-    public Author updateAuthor(String id, Author author) {
+    public void updateAuthor(String id, AuthorDto authorDto) {
         int intId = Integer.parseInt(id);
+        Author author = mm.map(authorDto, Author.class);
+        author.setBooks(authorRepository.getOne(authorDto.getId()).getBooks());
         if (intId == author.getId()) {
-            return authorRepository.save(author);
+            authorRepository.save(author);
         } else {
             throw new IllegalArgumentException("Id`s are different.");
         }
