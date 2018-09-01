@@ -1,5 +1,7 @@
 <span class="header float-left">Book List</span>
-<input type="button" class="float-right" routerLink="/book-page" value="Add">
+<button class="float-right" routerLink="/book-page">
+  <img src="https://cdn2.iconfinder.com/data/icons/arrows-and-universal-actions-icon-set/256/plus_circle-16.png"/>
+</button>
 
 <table border="1" class="table">
   <thead class="thead-dark">
@@ -21,8 +23,12 @@
       </div>
     </td>
     <td>
-      <input type="button" value="delete" (click)="delete($event, b.id)"/>
-      <input type="button" value="update" routerLink="/book-page" [queryParams]="{book_id:b.id}"/>
+      <button class="delete"  (click)="delete($event, b.id)">
+        <img src="https://cdn4.iconfinder.com/data/icons/linecon/512/delete-16.png"/>
+      </button>
+      <button id="margin" routerLink="/book-page" [queryParams]="{book_id:b.id}">
+        <img src="https://cdn4.iconfinder.com/data/icons/48-bubbles/48/15.Pencil-16.png"/>
+      </button>
     </td>
   </tr>
 </table>

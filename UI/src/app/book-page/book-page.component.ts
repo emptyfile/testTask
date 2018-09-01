@@ -24,7 +24,6 @@ export class BookPageComponent implements OnInit {
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      console.log(params);
       let book_id = params["book_id"];
       this.authorService.getAllBase().subscribe(
         data => {
@@ -35,7 +34,6 @@ export class BookPageComponent implements OnInit {
         this.bookService.getById(book_id).subscribe(
           data => {
             this.book = data;
-            console.log(data);
             this.selectedAuthors = this.book.authors;
             console.error(this.selectedAuthors)
             this.numbers = Array.from(new Array(this.selectedAuthors.length), (x,i)=>i)
@@ -74,13 +72,11 @@ export class BookPageComponent implements OnInit {
     } else {
       this.selectedAuthors[index] = null;
     }
-    console.log(JSON.stringify(this.selectedAuthors));
   }
 
   public addAuthor() {
     this.numbers.push(this.numbers.length);
     this.selectedAuthors.push({"id": 0, "firstName": "", "lastName": ""});
-    console.log(JSON.stringify(this.selectedAuthors));
   }
 
   public string(obj:any):string {

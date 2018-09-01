@@ -21,10 +21,8 @@ public class AuthorController {
     public List<AuthorDto> getAllAuthors(@RequestParam(name = "book_id",required = false) Integer bookId) {
         System.out.println(bookId);
         if (bookId == null) {
-            System.out.println(authorService.getAllAuthors());
             return authorService.getAllAuthors();
         } else {
-            System.out.println(authorService.getAllAuthorsByBookId(bookId));
             return authorService.getAllAuthorsByBookId(bookId);
         }
     }
@@ -51,7 +49,6 @@ public class AuthorController {
 
     @DeleteMapping("/{id}")
     public void deleteAuthor(@PathVariable("id") String id) {
-        System.out.println("1 "+id);
         authorService.deleteAuthor(id);
     }
 

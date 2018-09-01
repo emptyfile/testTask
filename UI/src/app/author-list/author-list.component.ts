@@ -17,13 +17,11 @@ export class AuthorListComponent implements OnInit {
   ngOnInit() {
 
     this.route.queryParams.subscribe(params => {
-      console.log(params);
       let book_id = params["book_id"];
       if (book_id == undefined) {
         this.authorService.getAll().subscribe(
           data => {
             this.authors = data;
-            console.log(data)
           },
           error => console.log(error)
         )
@@ -31,7 +29,6 @@ export class AuthorListComponent implements OnInit {
         this.authorService.getByBookId(book_id).subscribe(
           data => {
             this.authors = data.body;
-            console.log(data)
           },
           error => console.log(error)
         )

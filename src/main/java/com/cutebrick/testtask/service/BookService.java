@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class BookService {
+
     @Autowired
     private BookRepository bookRepository;
 
@@ -55,11 +56,6 @@ public class BookService {
 
     }
 
-    public List<Book> getBooksByAuthor(Author author) {
-        //return bookRepository.getAllPozhalustaByAuthor(author);
-        return null;
-    }
-
     public List<Book> getBooksByName(String name) {
         return bookRepository.getBooksByBookName(name);
     }
@@ -81,7 +77,6 @@ public class BookService {
 
     public void updateBook(String id, BookDto bookDto) {
         int intId = Integer.parseInt(id);
-        //Book book = mm.map(bookDto, Book.class);
         Book book = bookRepository.getOne(bookDto.getId()).updateFromDto(bookDto, authorRepository);
         if (intId == book.getId()) {
 

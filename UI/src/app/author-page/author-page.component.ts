@@ -17,13 +17,11 @@ export class AuthorPageComponent implements OnInit {
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      console.log(params);
       let author_id = params["author_id"];
       if (author_id != undefined) {
         this.authorService.getBaseById(author_id).subscribe(
           data => {
             this.author = data;
-            console.log(data);
           },
           error => console.log(error)
         )

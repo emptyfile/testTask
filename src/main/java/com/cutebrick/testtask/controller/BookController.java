@@ -21,15 +21,12 @@ public class BookController {
     public List<BookDto> getAllBooks(@RequestParam(name = "author_id",required = false) Integer authorId) {
         System.out.println(authorId);
         if (authorId==null) {
-            System.out.println(bookService.getAllBooks());
             return bookService.getAllBooks();
         }else {
-            System.out.println(bookService.getAllBooksByAuthorId(authorId));
             return bookService.getAllBooksByAuthorId(authorId);
         }
     }
 
-    @CrossOrigin(origins = "*")
     @PostMapping(consumes = "application/json")
     public void createBook(@RequestBody BookDto book) {
         bookService.createBook(book);
@@ -42,13 +39,11 @@ public class BookController {
 
     @DeleteMapping("/{id}")
     public void deleteBook(@PathVariable("id") String id) {
-        System.out.println("1 "+id);
         bookService.deleteBook(id);
     }
 
     @PutMapping("/{id}")
     public void updateBook(@PathVariable("id") String id, @RequestBody BookDto book) {
-
         bookService.updateBook(id, book);
     }
 }

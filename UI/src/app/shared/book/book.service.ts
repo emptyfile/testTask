@@ -24,13 +24,11 @@ export class BookService {
 
   getById(id:number):Observable<any> {
     let url = "http://localhost:8080/books/" + id;
-    console.log(url);
     return this.http.get(url);
   }
 
   delete(bookId: any): Observable<any> {
     let url = "http://localhost:8080/books/" + bookId;
-    console.log(url);
     return this.http.delete(url);
   }
 

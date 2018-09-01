@@ -21,7 +21,6 @@ export class AuthorService {
 
   delete(authorId: any): Observable<any> {
     let url = "http://localhost:8080/authors/" + authorId;
-    console.log(url);
     return this.http.delete(url);
   }
 
@@ -37,7 +36,6 @@ export class AuthorService {
 
   getBaseById(authorId:number):Observable<any> {
     let url = "http://localhost:8080/authors/base/" + authorId;
-    console.log(url);
     return this.http.get(url);
   }
 
