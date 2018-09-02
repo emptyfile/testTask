@@ -1,11 +1,13 @@
-<label>First Name
+<div class="flexContainer">
+  <label>First Name
+    <br>
+    <input type="text" #firstName [(ngModel)]="author.firstName">
+  </label>
   <br>
-  <input type="text" #firstName [(ngModel)]="author.firstName">
-</label>
-<br>
-<label>Last Name
+  <label>Last Name
+    <br>
+    <input type="text" #lastName [(ngModel)]="author.lastName">
+  </label>
   <br>
-  <input type="text" #lastName [(ngModel)]="author.lastName">
-</label>
-<br>
-<input type="button" (click)="save()" value="Save">
+  <input type="button" (click)="save()" value="Save">
+</div>

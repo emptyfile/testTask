@@ -1,7 +1,9 @@
 .header{
   font-size: 25px;
 }
-
+.button-plus{
+  padding-bottom: 4px;
+}
 
 #margin{
   margin-left: 10px;
