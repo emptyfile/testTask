@@ -14,6 +14,12 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+/**
+ * Entity for Authors.
+ * Entity represents a Author Table in database.
+ *
+ * @author Peter Ursatii
+ */
 @Entity
 @Data
 @AllArgsConstructor
@@ -48,6 +54,10 @@ public class Author {
         return Objects.hash(super.hashCode(), id);
     }
 
+    /**
+     * This method is called before deleting a author.
+     * It deletes this author from all of the books he wrote.
+     */
     @PreRemove
     public void removeBook() {
         List<Book> books = this.getBooks();
@@ -55,6 +65,12 @@ public class Author {
         this.setBooks(new ArrayList<>());
     }
 
+    /**
+     * This method removes book from this author and
+     * removes this author from from that book.
+     *
+     * @param book
+     */
     public void removeOneBook(Book book) {
         this.getBooks().remove(book);
         if (book.getAuthors().contains(this)) {
@@ -62,6 +78,11 @@ public class Author {
         }
     }
 
+    /**
+     * This method adds one book to the data base.
+     *
+     * @param book
+     */
     public void addOneBook(Book book) {
         this.getBooks().add(book);
         book.getAuthors().add(this);

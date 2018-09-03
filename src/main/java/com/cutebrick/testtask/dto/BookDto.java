@@ -5,6 +5,12 @@ import lombok.ToString;
 
 import java.util.List;
 
+/**
+ * This class provides Data Transfer Object for Books.
+ * It needs to separate information about books.
+ *
+ * @author Peter Ursatii
+ */
 @ToString
 @Data
 public class BookDto extends BaseBookDto{

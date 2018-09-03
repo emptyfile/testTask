@@ -7,6 +7,12 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * Repository for Authors.
+ * Repository is providing connection to the data base.
+ *
+ * @author Peter Ursatii
+ */
 @Repository
 public interface BookRepository extends JpaRepository<Book, Integer> {
     List<Book> getBooksByBookName(String name);
