@@ -1,5 +1,5 @@
 <span class="header float-left">Author List</span>
-<button class="float-right button-plus" routerLink="/author-page" >
+<button class="float-right button-plus btn btn-light" routerLink="/author-page" >
   <img src="https://cdn2.iconfinder.com/data/icons/arrows-and-universal-actions-icon-set/256/plus_circle-16.png"/>
 </button>
 <table border="1" class="table">
@@ -18,10 +18,10 @@
       </div>
     </td>
     <td>
-      <button class="delete" (click)="delete($event, a.id)">
+      <button class="delete btn btn btn-light" (click)="delete($event, a.id)">
         <img src="https://cdn4.iconfinder.com/data/icons/linecon/512/delete-16.png"/>
       </button>
-      <button class="margin" routerLink="/author-page" [queryParams]="{author_id:a.id}">
+      <button class="margin btn btn btn-light" routerLink="/author-page" [queryParams]="{author_id:a.id}">
         <img src="https://cdn4.iconfinder.com/data/icons/48-bubbles/48/15.Pencil-16.png"/>
       </button>
     </td>
