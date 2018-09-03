@@ -1,10 +1,10 @@
 .header{
   font-size: 25px;
 }
-.margin{
-  margin-left: 10px;
-}
 .button-plus{
   padding-bottom: 4px;
 }
 
+#margin{
+  margin-left: 10px;
+}

@@ -1,12 +1,29 @@
-<p>
-  author-list works!
-</p>
-
-<h2>Author List</h2>
-<table border="1">
-  <tr *ngFor="let b of authors">
-    <td>{{b.lastName}}</td>
-    <td>{{b.firstName}}</td>
-    <td>{{b.id}}</td>
+<span class="header float-left">Author List</span>
+<button class="float-right button-plus btn btn-light" routerLink="/author-page" >
+  <img src="https://cdn2.iconfinder.com/data/icons/arrows-and-universal-actions-icon-set/256/plus_circle-16.png"/>
+</button>
+<table border="1" class="table">
+  <thead class="thead-dark">
+  <tr>
+    <th scope="col">Name</th>
+    <th scope="col">Books</th>
+    <th scope="col">Actions</th>
+  </tr>
+  </thead>
+  <tr *ngFor="let a of authors">
+    <td>{{a.firstName}} {{a.lastName}}</td>
+    <td>
+      <div>
+        <a routerLink="/book-list" [queryParams]="{author_id:a.id}" *ngIf="a.books.length>0"> {{a.books[0].bookName}} <span *ngIf="a.books.length>1;">...</span></a>
+      </div>
+    </td>
+    <td>
+      <button class="delete btn btn btn-light" (click)="delete($event, a.id)">
+        <img src="https://cdn4.iconfinder.com/data/icons/linecon/512/delete-16.png"/>
+      </button>
+      <button class="margin btn btn btn-light" routerLink="/author-page" [queryParams]="{author_id:a.id}">
+        <img src="https://cdn4.iconfinder.com/data/icons/48-bubbles/48/15.Pencil-16.png"/>
+      </button>
+    </td>
   </tr>
 </table>

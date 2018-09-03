@@ -1,12 +1,14 @@
 package com.cutebrick.testtask.controller;
 
 import com.cutebrick.testtask.dto.AuthorDto;
+import com.cutebrick.testtask.dto.BaseAuthorDto;
 import com.cutebrick.testtask.entity.Author;
 import com.cutebrick.testtask.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/authors")
@@ -16,15 +18,28 @@ public class AuthorController {
     private AuthorService authorService;
 
     @GetMapping
-    public List<AuthorDto> getAllAuthors() {
-        System.out.println(authorService.getAllAuthors());
-        return authorService.getAllAuthors();
-
+    public List<AuthorDto> getAllAuthors(@RequestParam(name = "book_id",required = false) Integer bookId) {
+        System.out.println(bookId);
+        if (bookId == null) {
+            return authorService.getAllAuthors();
+        } else {
+            return authorService.getAllAuthorsByBookId(bookId);
+        }
     }
 
-    @PostMapping
-    public Author createAuthor(@RequestBody Author author) {
-        return authorService.createAuthor(author);
+    @GetMapping("/base")
+    public List<BaseAuthorDto> getAllBaseAuthorDtos() {
+        return authorService.getAllBaseAuthorDtos();
+    }
+
+    @GetMapping("/base/{id}")
+    public BaseAuthorDto getBaseAuthor(@PathVariable("id") String id) {
+        return authorService.getBaseAuthorById(id);
+    }
+
+    @PostMapping(consumes = "application/json")
+    public void createAuthor(@RequestBody Author author) {
+        authorService.createAuthor(author);
     }
 
     @GetMapping("/{id}")
@@ -38,7 +53,9 @@ public class AuthorController {
     }
 
     @PutMapping("/{id}")
-    public Author updateAuthor(@PathVariable("id") String id, @RequestBody Author author) {
-        return authorService.updateAuthor(id, author);
+    public void updateAuthor(@PathVariable("id") String id, @RequestBody AuthorDto authorDto) {
+        authorService.updateAuthor(id, authorDto);
     }
+
+
 }

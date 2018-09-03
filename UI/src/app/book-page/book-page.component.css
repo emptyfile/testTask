@@ -1,0 +1,15 @@
+.flex-wrapper {
+  margin-top: 10%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items:center;
+  justify-content: space-around;
+  height: 450px;
+}
+.flex{
+  display: flex;
+  justify-content: space-between;
+  width: 150px;
+
+}

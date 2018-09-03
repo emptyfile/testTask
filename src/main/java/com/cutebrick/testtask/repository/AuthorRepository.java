@@ -10,4 +10,5 @@ import java.util.List;
 public interface AuthorRepository extends JpaRepository<Author, Integer> {
     List<Author> getAuthorByFirstNameAndLastName(String firstName, String lastName);
     void deleteAuthorById(Integer id);
+    List<Author> getAllByIdIn(List<Integer> ids);
 }

@@ -1,0 +1,13 @@
+<div class="flex-wrapper">
+  <label>First Name
+    <br>
+    <input type="text" class="form-control" #firstName [(ngModel)]="author.firstName">
+  </label>
+  <br>
+  <label>Last Name
+    <br>
+    <input type="text" class="form-control" #lastName [(ngModel)]="author.lastName">
+  </label>
+  <br>
+  <input type="button" class="btn btn-light" (click)="save()" value="Save">
+</div>

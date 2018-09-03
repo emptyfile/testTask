@@ -1,0 +1,25 @@
+<div class="flex-wrapper">
+  <label>Book name<br>
+    <input type="text" class="form-control" #bookName [(ngModel)]="book.bookName">
+  </label>
+  <br>
+  <label>Genre <br>
+    <input type="text" class="form-control" #genre [(ngModel)]="book.genre">
+  </label>
+  <br>
+  <label>Release Year<br>
+    <input type="text" #releaseYear class="form-control" [(ngModel)]="book.releaseYear">
+  </label>
+  <br>Authors
+  <div *ngFor="let n of numbers">
+    <select name="Authors" id="authors" class="custom-select" [compareWith]="compareAuthor" [(ngModel)]="selectedAuthors[n]"
+            (ngModelChange)="log($event)">
+      <option [ngValue]="a" *ngFor="let a of authors" [selected]="a.id==1">{{a.firstName}} {{a.lastName}}</option>
+    </select>
+  </div>
+  <br>
+  <div class="flex">
+    <input type="button" class="btn btn-light" value="Add" (click)="addAuthor()">
+    <input type="button" class="btn btn-light" (click)="save()" value="Save">
+  </div>
+</div>
